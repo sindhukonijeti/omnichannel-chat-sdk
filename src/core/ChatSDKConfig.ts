@@ -8,7 +8,9 @@ interface DataMaskingSDKConfig {
 
 interface TelemetrySDKConfig {
     disable: boolean,
-    ariaTelemetryKey?: string
+    ariaTelemetryKey?: string,
+    ariaCollectorUri?: string, 
+    runtimeId?: string
 }
 
 interface PersistentChatConfig {
@@ -20,6 +22,13 @@ interface ChatReconnectConfig {
     disable: boolean;
 }
 
+/**
+ * Non-backward compatible configurations or experimentals. Subject to change any time. Internal use only.
+ */
+interface InternalChatSDKConfig {
+    createCoreServicesOrgUrlAtRuntime?: boolean;
+}
+
 interface ChatSDKConfig {
     dataMasking?: DataMaskingSDKConfig,
     telemetry?: TelemetrySDKConfig,
@@ -27,7 +36,9 @@ interface ChatSDKConfig {
     chatReconnect?: ChatReconnectConfig,
     getAuthToken?: () => Promise<string|null>,
     ic3Config?: IC3Config,
-    chatAdapterConfig?: ChatAdapterConfig
+    chatAdapterConfig?: ChatAdapterConfig,
+    internalConfig?: InternalChatSDKConfig,
+    ocUserAgent?: string[]
 }
 
 export {
